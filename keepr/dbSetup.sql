@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS keeps(
   creatorId VARCHAR(255) NOT NULL,
   name TEXT NOT NULL,
   description TEXT NOT NULL,
-  imgUrl TEXT NOT NULL,
+  img TEXT NOT NULL,
   views INT NOT NULL,
   shares INT NOT NULL,
   keeps INT NOT NULL,
