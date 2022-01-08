@@ -70,7 +70,7 @@ namespace keepr.Repositories
       views = @views,
       shares = @shares,
       keeps = @keeps
-      WHERE id = id;";
+      WHERE id = @id;";
       _db.Execute(sql, og);
     }
 
