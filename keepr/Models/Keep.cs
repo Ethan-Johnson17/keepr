@@ -1,6 +1,8 @@
+using keepr.Interfaces;
+
 namespace keepr.Models
 {
-  public class Keep
+  public class Keep : IRepoItem<int>
   {
     public int id { get; set; }
     public string creatorId { get; set; }
@@ -11,5 +13,12 @@ namespace keepr.Models
     public int shares { get; set; }
     public int keeps { get; set; }
     public Account Creator { get; set; }
+  }
+
+  public class VaultKeepViewModel : Keep
+  {
+    public int vaultId { get; set; }
+    public int keepId { get; set; }
+    public new int id { get; set; }
   }
 }
