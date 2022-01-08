@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using keepr.Models;
 using keepr.Repositories;
@@ -21,9 +22,29 @@ namespace keepr.Services
       return _repo.GetByVault(id);
     }
 
+    internal VaultKeepViewModel GetById(int id)
+    {
+      VaultKeepViewModel vault = _repo.GetById(id);
+      if (vault == null)
+      {
+        throw new Exception("Nope, invalid Id");
+      }
+      return vault;
+    }
+
     internal VaultKeepViewModel CreateVaultKeep(VaultKeepViewModel newVk)
     {
       return _repo.CreateVaultKeep(newVk);
+    }
+
+    internal void Delete(int id, string creatorId)
+    {
+      VaultKeepViewModel toDelete = GetById(id);
+      if (toDelete.creatorId != creatorId)
+      {
+        throw new Exception("Try deleting your own vault for a change");
+      }
+      _repo.Delete(id);
     }
   }
 }
