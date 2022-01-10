@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using keepr.Models;
 using keepr.Repositories;
 
@@ -21,6 +22,18 @@ namespace keepr.Services
         throw new Exception("Nope, invalid Id");
       }
       return prof;
+    }
+
+    internal List<Keep> GetProfilesKeeps(string id)
+    {
+      GetById(id);
+      return _repo.GetProfilesKeeps(id);
+    }
+
+    internal List<Vault> GetProfileVaults(string id)
+    {
+      GetById(id);
+      return _repo.GetProfileVaults(id);
     }
   }
 }
