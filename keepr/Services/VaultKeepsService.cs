@@ -16,11 +16,11 @@ namespace keepr.Services
       _repo = repo;
     }
 
-    internal List<VaultKeepViewModel> GetByVault(int id)
-    {
-      _vs.GetById(id);
-      return _repo.GetByVault(id);
-    }
+    // internal List<VaultKeepViewModel> GetByVault(int id, string userId)
+    // {
+    //   Vault vault = _vs.GetById(id, userId);
+    //   return _repo.GetByVault(id);
+    // }
 
     internal VaultKeepViewModel GetById(int id)
     {
@@ -32,8 +32,13 @@ namespace keepr.Services
       return vault;
     }
 
-    internal VaultKeepViewModel CreateVaultKeep(VaultKeepViewModel newVk)
+    internal VaultKeepViewModel CreateVaultKeep(VaultKeepViewModel newVk, string userId)
     {
+      Vault vault = _vs.GetById(newVk.vaultId, userId);
+      if (vault.creatorId != newVk.creatorId)
+      {
+        throw new Exception("Please sign in");
+      }
       return _repo.CreateVaultKeep(newVk);
     }
 
@@ -47,8 +52,9 @@ namespace keepr.Services
       _repo.Delete(id);
     }
 
-    public List<VaultKeepViewModel> GetKeepsByVault(int id)
+    public List<VaultKeepViewModel> GetKeepsByVault(int id, string userId)
     {
+      Vault vault = _vs.GetById(id, userId);
       return _repo.GetKeepsByVault(id);
     }
   }

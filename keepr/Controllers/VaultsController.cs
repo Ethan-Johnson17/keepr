@@ -22,11 +22,12 @@ namespace keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Vault> GetById(int id)
+    public async Task<ActionResult<Vault>> GetById(int id)
     {
       try
       {
-        return Ok(_vs.GetById(id));
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        return Ok(_vs.GetById(id, userInfo?.Id));
       }
       catch (System.Exception e)
       {
@@ -61,7 +62,7 @@ namespace keepr.Controllers
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         update.creatorId = userInfo.Id;
         update.id = id;
-        Vault updated = _vs.Edit(update);
+        Vault updated = _vs.Edit(update, userInfo.Id);
         return Ok(updated);
       }
       catch (System.Exception e)
@@ -88,13 +89,12 @@ namespace keepr.Controllers
 
     // #region VaultKeep
     [HttpGet("{id}/keeps")]
-    public ActionResult<List<VaultKeepViewModel>> GetByVault(int id)
+    public async Task<ActionResult<List<VaultKeepViewModel>>> GetByVault(int id)
     {
       try
       {
-        // List<VaultKeepViewModel> vaulk = _vks.GetByVault(id);
-        // return Ok(vaulk);
-        return Ok(_vks.GetKeepsByVault(id));
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        return Ok(_vks.GetKeepsByVault(id, userInfo?.Id));
       }
       catch (System.Exception e)
       {

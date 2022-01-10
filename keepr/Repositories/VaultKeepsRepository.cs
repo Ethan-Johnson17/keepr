@@ -15,22 +15,22 @@ namespace keepr.Repositories
       _db = db;
     }
 
-    internal List<VaultKeepViewModel> GetByVault(int id)
-    {
-      string sql = @"
-      SELECT
-      vk.*,
-      a.*
-      FROM vaultKeeps vk
-      JOIN accounts a ON vk.creatorId = a.id
-      WHERE vk.vaultId = @id;
-      ";
-      return _db.Query<VaultKeepViewModel, Account, VaultKeepViewModel>(sql, (vk, acct) =>
-      {
-        vk.Creator = acct;
-        return vk;
-      }, new { id }).ToList();
-    }
+    // internal List<VaultKeepViewModel> GetByVault(int id)
+    // {
+    //   string sql = @"
+    //   SELECT
+    //   vk.*,
+    //   a.*
+    //   FROM vaultKeeps vk
+    //   JOIN accounts a ON vk.creatorId = a.id
+    //   WHERE vk.vaultId = @id;
+    //   ";
+    //   return _db.Query<VaultKeepViewModel, Account, VaultKeepViewModel>(sql, (vk, acct) =>
+    //   {
+    //     vk.Creator = acct;
+    //     return vk;
+    //   }, new { id }).ToList();
+    // }
 
     internal VaultKeepViewModel GetById(int id)
     {
