@@ -52,6 +52,25 @@ namespace keepr.Repositories
       return newVk;
     }
 
+    internal List<VaultKeepViewModel> GetKeepsByVault(int id)
+    {
+      string sql = @"
+      SELECT
+      k.*,
+      vk.id AS vaultKeepId,
+      a.*
+      FROM vaultKeeps vk
+      JOIN accounts a ON vk.creatorId = a.id
+      JOIN keeps k ON vk.keepId = k.id
+      WHERE vk.vaultId = @id;
+      ";
+      return _db.Query<VaultKeepViewModel, Account, VaultKeepViewModel>(sql, (keep, acct) =>
+      {
+        keep.Creator = acct;
+        return keep;
+      }, new { id }).ToList();
+    }
+
     internal void Delete(int id)
     {
       string sql = @"DELETE FROM vaultKeeps WHERE id = @id LIMIT 1";

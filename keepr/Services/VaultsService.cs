@@ -20,6 +20,10 @@ namespace keepr.Services
       {
         throw new Exception("Nope, invalid Id");
       }
+      else if (vault.isPrivate == true)
+      {
+        throw new Exception("Nope, it's private");
+      }
       return vault;
     }
 

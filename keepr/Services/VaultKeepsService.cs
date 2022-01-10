@@ -46,5 +46,10 @@ namespace keepr.Services
       }
       _repo.Delete(id);
     }
+
+    public List<VaultKeepViewModel> GetKeepsByVault(int id)
+    {
+      return _repo.GetKeepsByVault(id);
+    }
   }
 }

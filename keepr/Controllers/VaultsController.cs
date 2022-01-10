@@ -92,8 +92,9 @@ namespace keepr.Controllers
     {
       try
       {
-        List<VaultKeepViewModel> vaulk = _vks.GetByVault(id);
-        return Ok(vaulk);
+        // List<VaultKeepViewModel> vaulk = _vks.GetByVault(id);
+        // return Ok(vaulk);
+        return Ok(_vks.GetKeepsByVault(id));
       }
       catch (System.Exception e)
       {

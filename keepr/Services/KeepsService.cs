@@ -37,6 +37,10 @@ namespace keepr.Services
     internal Keep Edit(Keep update)
     {
       Keep og = GetById(update.id);
+      if (og.creatorId != update.creatorId)
+      {
+        throw new Exception("Not allowed");
+      }
       og.name = update.name != null ? update.name : og.name;
       og.description = update.description != null ? update.description : og.description;
       og.img = update.img != null ? update.img : og.img;
