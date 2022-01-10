@@ -1,11 +1,27 @@
 <template>
   <div class="align-items-center justify-content-center container-fluid">
+    <div class="text-end py-3 me-2">
+      <i
+        data-bs-toggle="modal"
+        data-bs-target="#newKeepModal"
+        class="
+          mdi mdi-plus
+          f-24
+          text-light
+          bg-dark
+          rounded-circle
+          px-1
+          selectable
+        "
+      ></i>
+    </div>
     <div class="row">
       <div class="col m-3 bg-img" v-for="k in keeps" :key="k.id">
         <Keep :keep="k" />
       </div>
     </div>
   </div>
+  <KeepModal />
 </template>
 
 <script>

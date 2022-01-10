@@ -8,6 +8,7 @@
   <!-- <footer>
     <div class="bg-secondary darken-20 text-light text-center p-4"></div>
   </footer> -->
+  <newKeepModal />
 </template>
 
 <script>
