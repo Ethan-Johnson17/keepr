@@ -10,27 +10,9 @@
       onHover
       selectable
     "
-    @click="setActive(keep)"
-    :style="{
-      'background-image': 'url(' + keep.img + ')',
-      height: '300px',
-    }"
   >
-    <div class="col-md-12 mt-auto bg-opac">
-      <div class="row">
-        <div class="col-md-9 mt-auto text-light">
-          <h4 class="stroke-text">{{ keep.name }}</h4>
-        </div>
-        <div class="col-md-3 mt-auto">
-          <img
-            class="rounded-circle selectable mb-1 ms-3"
-            height="30"
-            :title="keep.creator.name"
-            :src="keep.creator.picture"
-            @click.stop="profilePage(keep.creatorId)"
-          />
-        </div>
-      </div>
+    <div class="col-md-9 mt-auto text-light elevation-3 blur">
+      <h4 class="stroke-text">{{ vault.name }}</h4>
     </div>
   </div>
 </template>
@@ -43,7 +25,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { logger } from '../utils/Logger'
 import { Modal } from 'bootstrap'
 export default {
-  props: { keep: { type: Object } },
+  props: { vault: { type: Object } },
   setup(props) {
     const route = useRoute()
     const router = useRouter()
@@ -86,20 +68,19 @@ export default {
 
 .onHover {
   transition: 500ms;
-  background-size: cover;
 }
 .onHover:hover {
   transform: scale(1.02);
 }
 
-// .stroke-text {
-//   -webkit-text-stroke: 1.5px rgb(20, 20, 20, 0.3);
-// opacity: 1;
-// }
+.stroke-text {
+  -webkit-text-stroke: 1px rgb(20, 20, 20);
+  opacity: 1;
+}
 
-.bg-opac {
-  background-color: rgb(121, 121, 121, 0.5);
-  // box-shadow: 2px black;
+.blur {
+  opacity: 0.2;
+  background-color: grey;
   // filter: blur(2px);
   // -webkit-filter: blur(2px);
 }
