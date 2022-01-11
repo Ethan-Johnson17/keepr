@@ -42,6 +42,8 @@ import { AppState } from '../AppState'
 import { useRoute, useRouter } from 'vue-router'
 import { logger } from '../utils/Logger'
 import { Modal } from 'bootstrap'
+import { keepsService } from '../services/KeepsService'
+import Pop from '../utils/Pop'
 export default {
   props: { keep: { type: Object } },
   setup(props) {
@@ -65,8 +67,11 @@ export default {
       async setActive(keep) {
         try {
           AppState.activeKeep = keep
+          keep.views++
+          let stats = { views: keep.views, keeps: keep.keeps, shares: keep.shares, id: keep.id, creatorId: keep.creatorId, }
           // await keepsService.getByRestaurantId(props.restaurant.id)
           Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
+          await keepsService.editStats(stats)
         } catch (error) {
           logger.error(error)
           Modal.getOrCreateInstance(document.getElementById("keepModal")).hide()

@@ -21,7 +21,7 @@
           </div>
           <div class="col-md-6">
             <div class="row justify-content-center">
-              <div class="col-md-2">Icons</div>
+              <div class="col-md-2 mdi mdi-eye">{{ keep.views }}</div>
               <div class="col-md-2">Icons</div>
               <div class="col-md-2">Icons</div>
             </div>

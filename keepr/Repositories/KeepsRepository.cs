@@ -73,6 +73,17 @@ namespace keepr.Repositories
       WHERE id = @id;";
       _db.Execute(sql, og);
     }
+    internal void EditStats(Keep og)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+      views = @views,
+      shares = @shares,
+      keeps = @keeps
+      WHERE id = @id;";
+      _db.Execute(sql, og);
+    }
 
     internal void Delete(int id)
     {

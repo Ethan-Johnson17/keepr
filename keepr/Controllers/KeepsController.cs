@@ -80,6 +80,20 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("{id}/stats")]
+    public ActionResult<Keep> EditStats([FromBody] Keep update, int id)
+    {
+      try
+      {
+        update.id = id;
+        Keep updated = _ks.EditStats(update);
+        return Ok(updated);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     [HttpDelete("{id}")]
     [Authorize]

@@ -10,9 +10,17 @@
       onHover
       selectable
     "
+    :style="{
+      'background-image': 'url(' + vault.img + ')',
+      height: '300px',
+    }"
   >
-    <div class="col-md-9 mt-auto text-light elevation-3 blur">
-      <h4 class="stroke-text">{{ vault.name }}</h4>
+    <div class="col-md-12 mt-auto bg-opac">
+      <div class="row">
+        <div class="col-md-9 mt-auto text-light">
+          <h4 class="stroke-text">{{ vault.name }}</h4>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -78,9 +86,9 @@ export default {
   opacity: 1;
 }
 
-.blur {
-  opacity: 0.2;
-  background-color: grey;
+.bg-opac {
+  background-color: rgb(121, 121, 121, 0.5);
+  // box-shadow: 2px black;
   // filter: blur(2px);
   // -webkit-filter: blur(2px);
 }

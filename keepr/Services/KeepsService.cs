@@ -50,6 +50,19 @@ namespace keepr.Services
       _repo.Edit(og);
       return og;
     }
+    internal Keep EditStats(Keep update)
+    {
+      Keep og = GetById(update.id);
+      if (og.creatorId != update.creatorId)
+      {
+        throw new Exception("Not allowed");
+      }
+      og.views = update.views;
+      og.shares = update.shares;
+      og.keeps = update.keeps;
+      _repo.EditStats(og);
+      return og;
+    }
 
     internal void Delete(int id, string creatorId)
     {

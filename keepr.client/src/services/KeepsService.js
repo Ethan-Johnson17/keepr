@@ -26,7 +26,19 @@ class KeepsService {
     const res = await api.delete('api/keeps/' + id)
     logger.log('Delete', res.data)
     AppState.keeps = AppState.keeps.filter(k => k.id !== id)
+  }
 
+  async editStats(keep) {
+    logger.log('Edit', keep)
+    const res = await api.put('api/keeps/' + keep.id + '/stats', keep)
+    logger.log('Edit', res.data)
+    AppState.activeKeep = res.data
+  }
+  async edit(keep) {
+    logger.log('Edit', keep)
+    const res = await api.put('api/keeps/' + keep.id, keep)
+    logger.log('Edit', res.data)
+    AppState.activeKeep = res.data
   }
 
 }
