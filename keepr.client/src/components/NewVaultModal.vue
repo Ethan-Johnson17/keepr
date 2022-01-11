@@ -89,6 +89,9 @@ export default {
 
       async newVault() {
         logger.log(editable.value)
+        if (editable.value.isPrivate != true) {
+          editable.value.isPrivate = false
+        }
         const vault = editable.value
         await vaultsService.newVault(vault)
         Modal.getOrCreateInstance(document.getElementById("newVaultModal")).toggle()

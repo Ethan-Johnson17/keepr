@@ -12,7 +12,6 @@ class KeepsService {
 
   async getAllByProfile(id) {
     const res = await api.get('api/profiles/' + id + '/keeps')
-    logger.log('profile', res.data)
     AppState.keeps = res.data
   }
 
@@ -29,9 +28,9 @@ class KeepsService {
   }
 
   async editStats(keep) {
-    logger.log('Edit', keep)
+    // logger.log('Edit', keep)
     const res = await api.put('api/keeps/' + keep.id + '/stats', keep)
-    logger.log('Edit', res.data)
+    // logger.log('Edit', res.data)
     AppState.activeKeep = res.data
   }
   async edit(keep) {

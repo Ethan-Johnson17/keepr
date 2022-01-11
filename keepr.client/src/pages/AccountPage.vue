@@ -12,8 +12,8 @@
             title="Edit account"
           ></i>
         </h1>
-        <h2>Vaults: {{ vaults.length }}</h2>
-        <h2>Keeps: {{ keeps.length }}</h2>
+        <h4>Vaults: {{ myVaults.length }}</h4>
+        <h4>Keeps: {{ keeps.length }}</h4>
       </div>
     </div>
     <div class="row align-items-center justify-content-center">
@@ -27,8 +27,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col m-3 bg-img" v-for="v in vaults" :key="v.id">
-        <Vault :vault="v" />
+      <div class="col m-3 bg-img" v-for="v in myVaults" :key="v.id">
+        <router-link :to="{ path: '/vaults/' + v.id }">
+          <Vault :vault="v" />
+        </router-link>
       </div>
     </div>
     <div class="row align-items-center justify-content-center">
@@ -66,6 +68,7 @@ export default {
     onMounted(async () => {
       try {
         await keepsService.getAll('api/keeps')
+        await vaultsService.getByAccount('api/vaults')
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -73,8 +76,8 @@ export default {
     })
     return {
       account: computed(() => AppState.account),
-      keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults.filter(v => v.creatorId == route.params)),
+      keeps: computed(() => AppState.keeps.filter(k => k.creatorId == AppState.account.id)),
+      myVaults: computed(() => AppState.myVaults),
 
     }
   }

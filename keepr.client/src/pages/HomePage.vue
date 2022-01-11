@@ -4,6 +4,7 @@
       <i
         data-bs-toggle="modal"
         data-bs-target="#newKeepModal"
+        title="Add Keep"
         class="
           mdi mdi-plus
           f-24
@@ -21,7 +22,7 @@
       </div>
     </div>
   </div>
-  <KeepModal />
+  <KeepModal :account="account" />
 </template>
 
 <script>
@@ -30,19 +31,22 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { keepsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
 export default {
   name: 'Home',
   setup() {
     onMounted(async () => {
       try {
         await keepsService.getAll('api/keeps')
+        await vaultsService.getByAccount('api/vaults')
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
       }
     })
     return {
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+      account: computed(() => AppState.account),
     }
   }
 }
