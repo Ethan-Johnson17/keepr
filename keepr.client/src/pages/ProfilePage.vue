@@ -59,7 +59,8 @@ export default {
     const route = useRoute()
     onMounted(async () => {
       try {
-        await keepsService.getAll('api/keeps')
+        await keepsService.getAllByProfile(route.params.id)
+        await vaultsService.getAllByProfile(route.params.id)
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -68,7 +69,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults.filter(v => v.creatorId == route.params)),
+      vaults: computed(() => AppState.vaults),
 
     }
   }

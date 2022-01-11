@@ -9,5 +9,11 @@ class VaultsService {
     AppState.vaults.push(res.data)
   }
 
+  async getAllByProfile(id) {
+    const res = await api.get('api/profiles/' + id + '/vaults')
+    logger.log('profile', res.data)
+    AppState.vaults = res.data
+  }
+
 }
 export const vaultsService = new VaultsService()
