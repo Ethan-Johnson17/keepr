@@ -26,7 +26,7 @@
                 required
               />
             </div>
-            <!-- <div class="col-md-12 my-3">
+            <div class="col-md-12 my-3">
               <label>Image</label>
               <input
                 type="url"
@@ -36,7 +36,7 @@
                 v-model="editable.img"
                 required
               />
-            </div> -->
+            </div>
             <div class="col-md-12">
               <label>Description</label>
               <textarea

@@ -37,6 +37,7 @@ namespace keepr.Services
       Vault og = GetById(update.id, userId);
       og.name = update.name != null ? update.name : og.name;
       og.description = update.description != null ? update.description : og.description;
+      og.img = update.img != null ? update.img : og.img;
       og.isPrivate = update.isPrivate != null ? update.isPrivate : og.isPrivate;
       _repo.Edit(og);
       return og;
