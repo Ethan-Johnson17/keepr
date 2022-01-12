@@ -58,6 +58,7 @@ namespace keepr.Repositories
       SELECT
       k.*,
       vk.id AS vaultKeepId,
+      @id AS vaultId,
       a.*
       FROM vaultKeeps vk
       JOIN accounts a ON vk.creatorId = a.id
