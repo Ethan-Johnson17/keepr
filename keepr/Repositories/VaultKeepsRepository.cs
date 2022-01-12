@@ -38,7 +38,7 @@ namespace keepr.Repositories
       return _db.QueryFirstOrDefault<VaultKeepViewModel>(sql, new { id });
     }
 
-    internal VaultKeepViewModel CreateVaultKeep(VaultKeepViewModel newVk)
+    internal VaultKeep CreateVaultKeep(VaultKeep newVk)
     {
       string sql = @"
       INSERT INTO vaultKeeps

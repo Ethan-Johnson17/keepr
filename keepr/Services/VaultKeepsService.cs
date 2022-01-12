@@ -32,7 +32,7 @@ namespace keepr.Services
       return vault;
     }
 
-    internal VaultKeepViewModel CreateVaultKeep(VaultKeepViewModel newVk, string userId)
+    internal VaultKeep CreateVaultKeep(VaultKeep newVk, string userId)
     {
       Vault vault = _vs.GetById(newVk.vaultId, userId);
       if (vault.creatorId != newVk.creatorId)
