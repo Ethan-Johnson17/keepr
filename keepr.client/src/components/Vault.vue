@@ -20,6 +20,10 @@
         <div class="col-md-9 mt-auto text-light">
           <h4 class="stroke-text">{{ vault.name }}</h4>
         </div>
+        <!-- NOTE show how many keeps -->
+        <!-- <div class="col-md-3">
+          <p>{{ vault.keeps.length }}</p>
+        </div> -->
       </div>
     </div>
   </div>

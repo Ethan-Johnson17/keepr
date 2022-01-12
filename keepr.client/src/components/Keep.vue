@@ -46,7 +46,7 @@ import { keepsService } from '../services/KeepsService'
 import Pop from '../utils/Pop'
 import { vaultsService } from '../services/VaultsService'
 export default {
-  props: { keep: { type: Object }, vaultKeep: { type: Object } },
+  props: { keep: { type: Object }, vk: { type: Object } },
   setup(props) {
     const route = useRoute()
     const router = useRouter()
@@ -68,13 +68,14 @@ export default {
 
       async setActive(keep) {
         try {
-          AppState.activeKeep = keep
           keep.views++
           let stats = { views: keep.views, id: keep.id, creatorId: keep.creatorId, keeps: keep.keeps }
           if (route.name == 'Home') {
+            AppState.activeKeep = keep
             Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
           }
           else if (route.name == 'Vaults') {
+            AppState.activeVaultKeep = keep
             Modal.getOrCreateInstance(document.getElementById("vkModal")).toggle()
           }
           await keepsService.editStats(stats)
