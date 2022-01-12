@@ -43,6 +43,7 @@ import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { vaultsService } from '../services/VaultsService'
 import { useRoute } from 'vue-router'
+import { accountService } from '../services/AccountService'
 export default {
   name: 'Account',
   setup() {
@@ -51,13 +52,14 @@ export default {
       try {
         await keepsService.getAllByProfile(route.params.id)
         await vaultsService.getAllByProfile(route.params.id)
+        await accountService.getProfile(route.params.id)
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
       }
     })
     return {
-      account: computed(() => AppState.account),
+      account: computed(() => AppState.profile),
       keeps: computed(() => AppState.keeps),
       vaults: computed(() => AppState.vaults),
 

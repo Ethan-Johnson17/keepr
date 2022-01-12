@@ -27,10 +27,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col m-3 bg-img" v-for="v in myVaults" :key="v.id">
-        <router-link :to="{ path: '/vaults/' + v.id }">
-          <Vault :vault="v" />
-        </router-link>
+      <div
+        class="col m-3 bg-img"
+        v-for="v in myVaults"
+        :key="v.id"
+        @click="routeTo(v.id)"
+      >
+        <!-- <router-link :to="{ path: '/vaults/' + v.id }"> -->
+        <Vault :vault="v" />
+        <!-- </router-link> -->
       </div>
     </div>
     <div class="row align-items-center justify-content-center">
@@ -60,11 +65,12 @@ import { keepsService } from '../services/KeepsService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { vaultsService } from '../services/VaultsService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 export default {
   name: 'Account',
   setup() {
     const route = useRoute()
+    const router = useRouter()
     onMounted(async () => {
       try {
         await keepsService.getAll('api/keeps')
@@ -78,6 +84,13 @@ export default {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps.filter(k => k.creatorId == AppState.account.id)),
       myVaults: computed(() => AppState.myVaults),
+
+      routeTo(id) {
+        router.push({
+          name: "Vaults",
+          params: { id: id }
+        })
+      }
 
     }
   }

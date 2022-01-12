@@ -11,14 +11,12 @@
           ></button>
         </div>
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <img
-              height="450"
-              class="w-100 object-fit-cover img-fluid rounded"
-              :src="keep.img"
-              :alt="keep.name"
-            />
-          </div>
+          <div
+            class="col-md-6 mb-3 size rounded"
+            :style="{
+              'background-image': 'url(' + keep.img + ')',
+            }"
+          ></div>
           <div class="col-md-6">
             <div class="row justify-content-center">
               <div class="col-md-2 mdi mdi-eye">{{ keep.views }}</div>
@@ -93,11 +91,11 @@
               ></div>
               <div class="col-md-5 text-center">
                 <img
-                  :src="account.picture"
+                  :src="keep.creator?.picture"
                   class="profile-img rounded-circle"
-                  :alt="account.name"
+                  :alt="keep.creator?.name"
                 />
-                {{ account.name }}
+                {{ keep.creator?.name }}
               </div>
             </div>
           </div>
@@ -133,9 +131,19 @@ export default {
         await keepsService.remove(id)
       },
 
-      addToVault(vault, keep) {
-        const vK = { vaultId: vault.id, keepId: keep.id }
-        vaultKeepsService.newVK(vK)
+      async addToVault(vault, keep) {
+        try {
+          const vK = { vaultId: vault.id, keepId: keep.id }
+          await vaultKeepsService.newVK(vK)
+          keep.keeps++
+          let stats = { keeps: keep.keeps, views: keep.views, id: keep.id, creatorId: keep.creatorId, }
+          await keepsService.editStats(stats)
+          Pop.toast('Keep added to ' + vault.name, 'success')
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error, 'error')
+        }
+
       },
 
       // NOTE Come back to this, create vault and add keep to it
@@ -152,5 +160,10 @@ export default {
 <style lang="scss" scoped>
 .profile-img {
   height: 40px;
+}
+
+.size {
+  // height: 300px;
+  background-size: cover;
 }
 </style>

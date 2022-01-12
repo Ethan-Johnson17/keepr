@@ -17,26 +17,22 @@ class KeepsService {
 
   async newKeep(keep) {
     const res = await api.post('api/keeps', keep)
-    logger.log('create', res.data)
     AppState.keeps.push(res.data)
   }
 
   async remove(id) {
     const res = await api.delete('api/keeps/' + id)
-    logger.log('Delete', res.data)
     AppState.keeps = AppState.keeps.filter(k => k.id !== id)
   }
 
   async editStats(keep) {
-    // logger.log('Edit', keep)
     const res = await api.put('api/keeps/' + keep.id + '/stats', keep)
-    // logger.log('Edit', res.data)
     AppState.activeKeep = res.data
+    const found = AppState.keeps.findIndex(k => k.id == keep.id)
+    AppState.keeps.splice(found, 1, res.data)
   }
   async edit(keep) {
-    logger.log('Edit', keep)
     const res = await api.put('api/keeps/' + keep.id, keep)
-    logger.log('Edit', res.data)
     AppState.activeKeep = res.data
   }
 

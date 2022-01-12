@@ -46,7 +46,7 @@ import { keepsService } from '../services/KeepsService'
 import Pop from '../utils/Pop'
 import { vaultsService } from '../services/VaultsService'
 export default {
-  props: { keep: { type: Object } },
+  props: { keep: { type: Object }, vaultKeep: { type: Object } },
   setup(props) {
     const route = useRoute()
     const router = useRouter()
@@ -70,8 +70,13 @@ export default {
         try {
           AppState.activeKeep = keep
           keep.views++
-          let stats = { views: keep.views, keeps: keep.keeps, shares: keep.shares, id: keep.id, creatorId: keep.creatorId, }
-          Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
+          let stats = { views: keep.views, id: keep.id, creatorId: keep.creatorId, keeps: keep.keeps }
+          if (route.name == 'Home') {
+            Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
+          }
+          else if (route.name == 'Vaults') {
+            Modal.getOrCreateInstance(document.getElementById("vkModal")).toggle()
+          }
           await keepsService.editStats(stats)
         } catch (error) {
           logger.error(error)
@@ -88,6 +93,7 @@ export default {
 <style lang="scss" scoped>
 .bg-img {
   min-width: 300px;
+  background-size: cover;
 }
 
 .onHover {
