@@ -43,8 +43,11 @@ export default {
         await vaultsService.getById(route.params.id, AppState.account.id)
         await vaultsService.getKeepsByVault(route.params.id)
       } catch (error) {
+        router.push({
+          name: "Home",
+        })
         logger.error(error)
-        Pop.toast(error.message, 'error')
+        Pop.toast('Private vault', 'error')
       }
     })
     return {

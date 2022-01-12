@@ -2,7 +2,11 @@
   <div class="container-fluid">
     <div class="row mb-3">
       <div class="col-md-2 text-center mt-5">
-        <img class="img-fluid imgH" :src="account.picture" alt="" />
+        <img
+          class="img-fluid imgH"
+          :src="account.picture"
+          :alt="account.name"
+        />
       </div>
       <div class="col-md-4 mt-5">
         <h1 class="f-42">
@@ -23,6 +27,7 @@
           data-bs-toggle="modal"
           data-bs-target="#newVaultModal"
           class="mdi mdi-plus f-24 text-danger px-1 mt-1 selectable"
+          title="New Vault"
         ></i>
       </div>
     </div>
@@ -45,10 +50,11 @@
           data-bs-toggle="modal"
           data-bs-target="#newKeepModal"
           class="mdi mdi-plus f-24 text-danger px-1 mt-1 selectable"
+          title="New Keep"
         ></i>
       </div>
       <div class="row">
-        <div class="col m-3 bg-img" v-for="k in keeps" :key="k.id">
+        <div class="col-md-2 m-3" v-for="k in keeps" :key="k.id">
           <Keep :keep="k" />
         </div>
       </div>

@@ -1,37 +1,16 @@
 <template>
-  <div
-    class="
-      Keep
-      row
-      bg-img
-      justify-content-between
-      elevation-3
-      rounded
-      onHover
-      selectable
-    "
-    @click="setActive(keep)"
-    :style="{
-      'background-image': 'url(' + keep.img + ')',
-      height: '300px',
-    }"
-  >
-    <div class="col-md-12 mt-auto bg-opac">
-      <div class="row">
-        <div class="col-md-9 mt-auto text-light">
-          <h4 class="stroke-text">{{ keep.name }}</h4>
-        </div>
-        <div class="col-md-3 mt-auto">
-          <img
-            class="rounded-circle selectable mb-1 ms-3"
-            height="30"
-            :title="keep.creator.name"
-            :src="keep.creator.picture"
-            @click.stop="profilePage(keep.creatorId)"
-          />
-        </div>
-      </div>
-    </div>
+  <div class="elevation-3 rounded onHover selectable" @click="setActive(keep)">
+    <img class="px-0 rounded img-fluid" :src="keep.img" :alt="keep.name" />
+    <span class="d-flex mt-auto justify-content-around move">
+      <h4 class="shadow text-light">{{ keep.name }}</h4>
+      <img
+        class="rounded selectable mb-1 ms-3"
+        height="30"
+        :title="keep.creator.name"
+        :src="keep.creator.picture"
+        @click.stop="profilePage(keep.creatorId)"
+      />
+    </span>
   </div>
 </template>
 
@@ -92,11 +71,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.bg-img {
-  min-width: 300px;
-  background-size: cover;
-}
-
 .onHover {
   transition: 500ms;
   background-size: cover;
@@ -105,15 +79,16 @@ export default {
   transform: scale(1.02);
 }
 
-// .stroke-text {
-//   -webkit-text-stroke: 1.5px rgb(20, 20, 20, 0.3);
-// opacity: 1;
-// }
+.shadow {
+  text-shadow: 2px 2px 2px rgb(36, 35, 35);
+}
 
-.bg-opac {
-  background-color: rgb(121, 121, 121, 0.5);
-  // box-shadow: 2px black;
-  // filter: blur(2px);
-  // -webkit-filter: blur(2px);
+.move {
+  transform: translateY(-1.5em);
+}
+
+.bgColor {
+  background-color: rgb(155, 155, 163, 0);
+  padding-bottom: -5rem;
 }
 </style>

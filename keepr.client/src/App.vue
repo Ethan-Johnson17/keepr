@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="pe-4">
     <router-view />
   </main>
   <!-- <footer>

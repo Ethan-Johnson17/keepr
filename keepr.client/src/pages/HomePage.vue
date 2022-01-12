@@ -1,5 +1,5 @@
 <template>
-  <div class="align-items-center justify-content-center container-fluid">
+  <div class="">
     <div class="text-end py-3 me-2">
       <i
         data-bs-toggle="modal"
@@ -16,8 +16,8 @@
         "
       ></i>
     </div>
-    <div class="row">
-      <div class="col m-3 bg-img" v-for="k in keeps" :key="k.id">
+    <div class="masonry-with-columns">
+      <div class="m-3" v-for="k in keeps" :key="k.id">
         <Keep :keep="k" />
       </div>
     </div>
@@ -38,7 +38,6 @@ export default {
     onMounted(async () => {
       try {
         await keepsService.getAll('api/keeps')
-        await vaultsService.getByAccount('api/vaults')
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -57,4 +56,29 @@ export default {
 .bg-img {
   background-size: cover;
 }
+
+body {
+  margin: 0.5;
+  padding: 1rem;
+}
+
+.masonry-with-columns {
+  columns: 6 180px;
+  column-gap: 1rem;
+  div {
+    margin: 0 1rem 1rem 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: system-ui;
+    font-weight: 900;
+    font-size: 2rem;
+  }
+}
+
+// @media screen and (max-width: 600px) {
+//   .masonry-with-columns {
+//     columns: 1 175px;
+//   }
+// }
 </style>
