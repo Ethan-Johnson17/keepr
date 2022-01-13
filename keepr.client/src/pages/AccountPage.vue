@@ -3,7 +3,7 @@
     <div class="row mb-3">
       <div class="col-md-2 text-center mt-5">
         <img
-          class="img-fluid imgH"
+          class="img-fluid imgH rounded"
           :src="account.picture"
           :alt="account.name"
         />
@@ -53,8 +53,8 @@
           title="New Keep"
         ></i>
       </div>
-      <div class="row">
-        <div class="col-md-2 m-3" v-for="k in keeps" :key="k.id">
+      <div class="masonry-with-columns">
+        <div class="m-3" v-for="k in keeps" :key="k.id">
           <Keep :keep="k" />
         </div>
       </div>
@@ -103,8 +103,27 @@ export default {
 }
 </script>
 
-<style scoped>
-img {
-  width: 200px;
+<style scoped lang="scss">
+.bg-img {
+  background-size: cover;
+}
+
+body {
+  margin: 0.5;
+  padding: 1rem;
+}
+
+.masonry-with-columns {
+  columns: 6 180px;
+  column-gap: 1rem;
+  div {
+    margin: 0 1rem 0 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: system-ui;
+    font-weight: 900;
+    font-size: 2rem;
+  }
 }
 </style>

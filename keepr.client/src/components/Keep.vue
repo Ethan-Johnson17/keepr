@@ -1,10 +1,10 @@
 <template>
   <div class="elevation-3 rounded onHover selectable" @click="setActive(keep)">
     <img class="px-0 rounded img-fluid" :src="keep.img" :alt="keep.name" />
-    <span class="d-flex mt-auto justify-content-around move">
-      <h4 class="shadow text-light">{{ keep.name }}</h4>
+    <span class="d-flex justify-content-between position-absolute move">
+      <h4 class="shadow text-light me-5 ms-2">{{ keep.name }}</h4>
       <img
-        class="rounded selectable mb-1 ms-3"
+        class="rounded selectable mb-1 ms-5"
         height="30"
         :title="keep.creator.name"
         :src="keep.creator.picture"
@@ -84,7 +84,7 @@ export default {
 }
 
 .move {
-  transform: translateY(-1.5em);
+  bottom: -3px;
 }
 
 .bgColor {

@@ -66,7 +66,7 @@ body {
   columns: 6 180px;
   column-gap: 1rem;
   div {
-    margin: 0 1rem 1rem 0;
+    margin: 0 1rem 0 0;
     display: inline-block;
     width: 100%;
     text-align: center;
