@@ -49,7 +49,7 @@
               </div>
             </div>
             <div class="row mt-auto justify-content-center">
-              <div class="col-md-5 mt-auto">
+              <div class="col-md-5 mt-auto" v-if="account.id == keep.creatorId">
                 <div class="dropdown mx-4 my-2">
                   <button
                     class="btn btn-secondary dropdown-toggle"

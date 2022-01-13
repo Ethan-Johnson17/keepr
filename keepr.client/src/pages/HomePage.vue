@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="text-end py-3 me-2">
+    <div class="text-end py-3 me-2" v-if="account.id">
       <i
         data-bs-toggle="modal"
         data-bs-target="#newKeepModal"

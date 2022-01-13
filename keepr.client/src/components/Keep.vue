@@ -49,7 +49,7 @@ export default {
         try {
           keep.views++
           let stats = { views: keep.views, id: keep.id, creatorId: keep.creatorId, keeps: keep.keeps }
-          if (route.name == 'Home') {
+          if (route.name == 'Home' || route.name == 'Profile' || route.name == 'Account') {
             AppState.activeKeep = keep
             Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
           }

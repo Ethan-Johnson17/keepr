@@ -59,7 +59,6 @@ export default {
       async setActive(keep) {
         try {
           AppState.activeKeep = keep
-          // await keepsService.getByRestaurantId(props.restaurant.id)
           Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle()
         } catch (error) {
           logger.error(error)
