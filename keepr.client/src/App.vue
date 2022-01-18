@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main class="pe-4">
+  <main class="pe-4 scrollbar">
     <router-view />
   </main>
   <!-- <footer>
@@ -25,6 +25,21 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.scrollbar {
+  overflow-y: scroll;
+  height: 74vh;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: $primary;
+  border-radius: 10px;
+}
 
 // body {
 //   margin: 0;

@@ -1,6 +1,6 @@
 <template>
   <div class="elevation-3 rounded onHover selectable" @click="setActive(keep)">
-    <img class="px-0 rounded img-fluid" :src="keep.img" :alt="keep.name" />
+    <img class="px-0 rounded-3 img-fluid" :src="keep.img" :alt="keep.name" />
     <span class="d-flex justify-content-between position-absolute move">
       <h4 class="shadow text-light me-5 ms-2">{{ keep.name }}</h4>
       <img
@@ -77,6 +77,8 @@ export default {
 }
 .onHover:hover {
   transform: scale(1.02);
+  box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.14),
+    0 1px 12px 0 rgba(0, 0, 0, 0.12);
 }
 
 .shadow {

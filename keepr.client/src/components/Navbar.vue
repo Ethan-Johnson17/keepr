@@ -1,7 +1,5 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-primary bg-secondary darken-20 px-3"
-  >
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div
         class="

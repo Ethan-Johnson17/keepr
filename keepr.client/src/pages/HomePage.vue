@@ -9,7 +9,7 @@
           mdi mdi-plus
           f-24
           text-light
-          bg-dark
+          bg-primary
           rounded-circle
           px-1
           selectable
